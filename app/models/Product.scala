@@ -1,6 +1,6 @@
 package models
 
-case class Product {
+case class Product(
     ean: Long, name: String, description: String)
 
 object Product {
