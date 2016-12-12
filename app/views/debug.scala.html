@@ -1,5 +1,5 @@
 @import play.api.Play.current
-@()(implicit lang: play.api.i18n.Lang)
+@()(implicit lang: Lang)
 <footer>
   lang = @lang.code
   user = @current.configuration.getString("environment.user")

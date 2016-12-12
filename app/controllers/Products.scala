@@ -2,15 +2,14 @@ package controllers
 
 import play.api.mvc.{Action, Controller, Flash}
 import models.Product
-import play.api.i18n.I18nSupport
-import play.api.i18n.MessagesApi
-import play.i18n._
-import play.api.Configuration
+import play.api.i18n.{I18nSupport, Messages, MessagesApi}
 import javax.inject.Inject
-import play.api.data.Form
-import play.api.data.Forms.{mapping, longNumber, nonEmptyText }
 
-class Products @Inject() extends Controller {
+import play.api.Configuration
+import play.api.data.Form
+import play.api.data.Forms.{longNumber, mapping, nonEmptyText}
+
+class Products @Inject()(val messagesApi: MessagesApi, val config: Configuration) extends Controller with I18nSupport {
   def list = Action { implicit request =>
     val products = Product.findAll
     Ok(views.html.products.list(products))
@@ -29,12 +28,12 @@ class Products @Inject() extends Controller {
       hasErrors = { form =>
         Redirect(routes.Products.newProduct())
           .flashing(Flash(form.data) +
-            ("error" -> Messages.get("validation.errors")))
+            ("error" -> Messages("validation.errors")))
       },
 
       success = { newProduct =>
         Product.add(newProduct)
-        val message = Messages.get("products.new.success", newProduct.name)
+        val message = Messages("products.new.success", newProduct.name)
         Redirect(routes.Products.show(newProduct.ean))
           .flashing("success" -> message)
       }

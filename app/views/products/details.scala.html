@@ -1,20 +1,19 @@
-@import play.i18n._
-@(product: Product)
+@(product: Product)(implicit messages: Messages, flash: Flash)
 
-@main(Messages.get("products.details", product.name)) {
+@main(Messages("products.details", product.name)) {
     <h2>
       @tags.barcode(product.ean)
-      @Messages.get("products.details", product.name)
+      @Messages("products.details", product.name)
     </h2>
     
     <dl class="dl-horizontal">
-      <dt>@Messages.get("ean"):</dt>
+      <dt>@Messages("ean"):</dt>
       <dd>@product.ean</dd>
       
-      <dt>@Messages.get("name"):</dt>
+      <dt>@Messages("name"):</dt>
       <dd>@product.name</dd>
       
-      <dt>@Messages.get("description"):</dt>
+      <dt>@Messages("description"):</dt>
       <dd>@product.description</dd>
     </dl>
 }

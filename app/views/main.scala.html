@@ -1,5 +1,4 @@
-@import play.i18n._
-@(title: String)(content: Html)(implicit flash: Flash)
+@(title: String)(content: Html)(implicit messages: Messages, flash: Flash)
 
 <!DOCTYPE html>
 <html>
@@ -14,19 +13,19 @@
           <div class="navbar-inner">
             <div class="container">
               <a class="brand" href="@routes.Application.index()">
-                @Messages.get("application.name")
+                @Messages("application.name")
               </a>
                 <ul class="nav">
                     <li class="divider-vertical"></li>
                     <li class="active">
                         <a href="@routes.Products.list()">
-                            @Messages.get("products.list.navigation")
+                            @Messages("products.list.navigation")
                         </a>
                     </li>
                     <li class="active">
                         <a href="@routes.Products.newProduct()">
                             <i class="icon-plus icon-white"></i>
-                            @Messages.get("products.new.command")
+                            @Messages("products.new.command")
                         </a>
                     </li>
                     <li class="divider-vertical"/>
