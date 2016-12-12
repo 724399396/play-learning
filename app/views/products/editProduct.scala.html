@@ -1,0 +1,21 @@
+@import play.i18n._
+@(productForm: Form[Product])(implicit flash: Flash)
+@import helper._
+@import helper.twitterBootstrap._
+
+@main(Messages.get("products.form")) {
+  <h2>@Messages.get("products.form")</h2>
+  
+  @helper.form(action = rotes.Products.save()) {
+  <fieldset>
+    <legend>
+      @Mssages.get("products.details", Messages.get("products.new"))
+    </legend>
+    @helper.inputText(productForm("ean"))
+    @helper.inputText(productForm("name"))
+    @helper.textarea(productForm("description"))
+  </fieldset>
+  <p><input type="submit" class="btn primary"
+            value='@Messages.get("products.new.submit")'></p>
+  }
+}

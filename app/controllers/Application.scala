@@ -19,6 +19,6 @@ class Application @Inject() extends Controller {
    * a path of `/`.
    */
   def index = Action { implicit request =>
-    Ok(views.html.index())
+    Redirect(routes.Products.list())
   }
 }
