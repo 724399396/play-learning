@@ -54,6 +54,6 @@ class Products @Inject()(val messagesApi: MessagesApi, val config: Configuration
         "validation.ean.duplicate", Product.findByEan(_).isEmpty),
       "name" -> nonEmptyText,
       "description" -> nonEmptyText
-    ) (Product.apply) (Product.unapply)
+    ) ( (x,y,z) => Product.apply(1,x,y,z)) (x => Product.unapply(x).map{case (_,x,y,z) => (x,y,z)})
   )
 }
