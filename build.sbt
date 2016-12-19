@@ -14,5 +14,6 @@ libraryDependencies ++= Seq(
   "postgresql" % "postgresql" % "9.3-1102.jdbc41",
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
   "net.sf.barcode4j" % "barcode4j" % "2.0",
-  "com.adrianhurt" %% "play-bootstrap" % "1.1-P25-B3"
+  "com.adrianhurt" %% "play-bootstrap" % "1.1-P25-B3",
+  "org.squeryl" %% "squeryl" % "0.9.7"
 )

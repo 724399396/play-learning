@@ -1,19 +1,19 @@
 # --- !Ups
 CREATE TABLE products (
-id long,
-ean long,
+id bigint,
+ean bigint,
 name varchar,
-description varcahr);
+description varchar);
 
 CREATE TABLE warehouses (
-id long,
+id bigint,
 name varchar);
 
 CREATE TABLE stock_items (
-id long,
-product_id long,
-warehouse_id long,
-quantity long);
+id bigint,
+product_id bigint,
+warehouse_id bigint,
+quantity bigint);
 
 # --- !Downs
 DROP TABLE IF EXISTS products;

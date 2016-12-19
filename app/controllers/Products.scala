@@ -11,7 +11,7 @@ import play.api.data.Forms.{longNumber, mapping, nonEmptyText}
 
 class Products @Inject()(val messagesApi: MessagesApi, val config: Configuration) extends Controller with I18nSupport {
   def list = Action { implicit request =>
-    val products = Product.findAll
+    val products = Product.getAll
     Ok(views.html.products.list(products))
   }
 

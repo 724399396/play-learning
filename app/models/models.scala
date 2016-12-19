@@ -1,6 +1,9 @@
 package models
 
 import anorm.{ResultSetParser, RowParser, SQL, SqlQuery}
+import org.squeryl.{KeyedEntity, Query, Table}
+import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.dsl.{ManyToOne, OneToMany}
 import play.api.Play.current
 import play.api.db.DB
 
@@ -9,7 +12,10 @@ case class Product (
   ean: Long,
   name: String,
   description: String
-)
+) extends KeyedEntity[Long] {
+  lazy val stockItems: OneToMany[StockItem] =
+    Database.productToStockItems.left(this)
+}
 
 object Product {
   var products = Set(
@@ -75,7 +81,6 @@ object Product {
 
   def productStockItemParser: RowParser[(Product, StockItem)] = {
     import anorm.SqlParser._
-    import anorm.~
     productParser ~ StockItem.stockItemParser map (flatten)
   }
 
@@ -89,16 +94,96 @@ object Product {
       results.groupBy(_._1).mapValues {_.map {_._2}}
     }
   }
+
+  def insert(product: Product): Boolean =
+    DB.withConnection{ implicit connection =>
+      val addedRows = SQL(
+        """insert into products
+          |values({id}, {ean}, {name}, {description}""").on(
+          "id" -> product.id,
+          "ean" -> product.ean,
+          "name" -> product.name,
+          "description" -> product.description
+        ).executeUpdate()
+      addedRows == 1
+    }
+
+  def update(product: Product): Boolean =
+    DB.withConnection { implicit connection =>
+      val updateRows = SQL(
+        s"""update products
+          set name = {name},
+          ean = {ean},
+          description = {description}
+          where
+          id = {id}
+        """).on(
+        "id" -> product.id,
+        "ean" -> product.ean,
+        "name" -> product.name,
+        "description" -> product.description).
+        executeUpdate()
+      updateRows == 1
+    }
+
+  def delete(product: Product): Boolean =
+    DB.withConnection { implicit connection =>
+      val updateRows = SQL("delete from products where id = {id}").
+        on("id" -> product.id).executeUpdate()
+      updateRows == 0
+    }
+
+  // Squeryl
+  import Database.{productsTable, stockItemsTable}
+  def allQ: Query[Product] = from(productsTable) {
+    product => select(product) orderBy(product.name.desc)
+  }
+
+  def findAll2: Iterable[Product] = inTransaction(
+    allQ.toList
+  )
+
+  def productsInWarehouse(warehouse: Warehouse) = {
+    join(productsTable, stockItemsTable)((product, stockItem) =>
+      where(stockItem.warehouseId === warehouse.id).
+        select(product).
+        on(stockItem.productId === product.id)
+    )
+  }
+
+  def productsInWarehouseByName(name: String,
+                                warehouse: Warehouse): Query[Product] = {
+    from(productsInWarehouse(warehouse)){product =>
+      where(product.description like name).select(product)
+    }
+  }
+
+  def insert2(product: Product): Product = inTransaction(
+    productsTable.insert(product)
+  )
+
+  def update2(product: Product): Unit = {
+    inTransaction(productsTable.update(product))
+  }
 }
 
-case class Warehouse(id: Long, name: String)
+case class Warehouse(id: Long, name: String) extends KeyedEntity[Long] {
+  lazy val stockItems: OneToMany[StockItem] =
+    Database.warehouseToStockItems.left(this)
+}
 
 case class StockItem(
   id: Long,
   productId: Long,
   warehouseId: Long,
   quantity: Long
-)
+) extends KeyedEntity[Long] {
+  lazy val product: ManyToOne[Product] =
+    Database.productToStockItems.right(this)
+
+  lazy val warehouse: ManyToOne[Warehouse] =
+    Database.warehouseToStockItems.right(this)
+}
 
 object StockItem {
   val stockItemParser: RowParser[StockItem] = {
