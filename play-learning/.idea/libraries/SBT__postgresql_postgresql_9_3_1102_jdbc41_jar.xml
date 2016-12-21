@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: postgresql:postgresql:9.3-1102.jdbc41:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/postgresql/postgresql/9.3-1102.jdbc41/postgresql-9.3-1102.jdbc41.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

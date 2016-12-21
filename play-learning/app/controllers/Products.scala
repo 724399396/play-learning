@@ -5,9 +5,13 @@ import models.Product
 import play.api.i18n.{I18nSupport, Messages, MessagesApi}
 import javax.inject.Inject
 
+import org.joda.time.LocalDate
 import play.api.Configuration
-import play.api.data.Form
+import play.api.data.{Form, FormError}
 import play.api.data.Forms.{longNumber, mapping, nonEmptyText}
+import play.api.data.format.Formatter
+
+import scala.util.Try
 
 class Products @Inject()(val messagesApi: MessagesApi, val config: Configuration) extends Controller with I18nSupport {
   def list = Action { implicit request =>
@@ -56,4 +60,18 @@ class Products @Inject()(val messagesApi: MessagesApi, val config: Configuration
       "description" -> nonEmptyText
     ) ( (x,y,z) => Product.apply(1,x,y,z)) (x => Product.unapply(x).map{case (_,x,y,z) => (x,y,z)})
   )
+
+  implicit val localDateFormatter = new Formatter[LocalDate] {
+    override def bind(key: String, data: Map[String, String]): Either[Seq[FormError], LocalDate] =
+      data.get(key) map { value =>
+        Try {
+         Right(LocalDate.parse(value))
+        } getOrElse Left(Seq(FormError(key, "error.date", Nil)))
+      } getOrElse Left(Seq(FormError(key, "error.required", Nil)))
+
+    override def unbind(key: String, value: LocalDate): Map[String, String] =
+      Map(key -> value.toString)
+
+    override val format = Some(("date.format", Nil))
+  }
 }

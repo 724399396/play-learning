@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.novocode:junit-interface:0.11:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/novocode/junit-interface/0.11/junit-interface-0.11.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/novocode/junit-interface/0.11/junit-interface-0.11-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/novocode/junit-interface/0.11/junit-interface-0.11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
