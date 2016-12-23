@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.typesafe.play:play-mailer_2.11:3.0.1:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/typesafe/play/play-mailer_2.11/3.0.1/play-mailer_2.11-3.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/typesafe/play/play-mailer_2.11/3.0.1/play-mailer_2.11-3.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/typesafe/play/play-mailer_2.11/3.0.1/play-mailer_2.11-3.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

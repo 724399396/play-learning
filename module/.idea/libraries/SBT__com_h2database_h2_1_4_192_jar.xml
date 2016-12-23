@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.h2database:h2:1.4.192:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/h2database/h2/1.4.192/h2-1.4.192.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/h2database/h2/1.4.192/h2-1.4.192-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/com/h2database/h2/1.4.192/h2-1.4.192-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

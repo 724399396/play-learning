@@ -3,6 +3,7 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import models.Product
 import play.api.libs.json._
+import play.api.libs.functional.syntax._
 
 class Products extends Controller {
   def list = Action {
@@ -25,4 +26,22 @@ class Products extends Controller {
     } getOrElse NotFound
   }
 
+  implicit val productReads: Reads[Product] = (
+    (JsPath \ "ean").read[Long] and
+      (JsPath \ "name").read[String] and
+      (JsPath \ "description").read[String]
+  ) (Product.apply _)
+
+  def save(ean: Long) = Action(parse.json) { request =>
+    val productJson = request.body
+    val product = productJson.as[Product]
+
+    try {
+      Product.save(product)
+      Ok("Saved")
+    } catch {
+      case e: IllegalArgumentException =>
+        BadRequest("Product not found")
+    }
+  }
 }

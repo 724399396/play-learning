@@ -9,7 +9,7 @@ import play.api.mvc._
  * application's home page.
  */
 @Singleton
-class Application @Inject() extends Controller {
+class Application @Inject()(val twitter: TwitterStreamFetch) extends Controller {
 
   /**
    * Create an Action to render an HTML page.
@@ -19,6 +19,7 @@ class Application @Inject() extends Controller {
    * a path of `/`.
    */
   def index = Action { implicit request =>
+    twitter.start
     Ok(views.html.index())
   }
 }

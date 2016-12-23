@@ -1,0 +1,17 @@
+application.name = 商品列表
+
+ean = 条码
+name = 名称
+description = 描述
+
+products.details = 商品: {0}
+
+products.form = 商品详情
+products.new = (新建)
+products.new.command = 新建
+products.new.submit = 添加
+products.new.success = 成功添加产品 {0}.
+products.list.navigation = 商品列表
+
+validation.errors = 请纠正当前错误的填写
+validation.ean.duplicate = 这个条码的商品已经存在

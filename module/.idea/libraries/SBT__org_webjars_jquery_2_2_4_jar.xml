@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars:jquery:2.2.4:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/maven.aliyun.com/nexus/content/groups/public/org/webjars/jquery/2.2.4/jquery-2.2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/maven.aliyun.com/nexus/content/groups/public/org/webjars/jquery/2.2.4/jquery-2.2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

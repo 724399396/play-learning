@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: joda-time:joda-time:2.9.6:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/joda-time/joda-time/2.9.6/joda-time-2.9.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/joda-time/joda-time/2.9.6/joda-time-2.9.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.coursier/cache/v1/http/svn.corp.qunar.com%3A8081/nexus/content/groups/public/joda-time/joda-time/2.9.6/joda-time-2.9.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
